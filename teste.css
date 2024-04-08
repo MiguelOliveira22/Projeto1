@@ -1,3 +1,8 @@
 body{
     background-color: bisque;
 }
+
+table, tr, td, th{
+    border: 3px black solid;
+    border-collapse: collapse;
+}
