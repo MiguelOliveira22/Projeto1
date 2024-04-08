@@ -9,3 +9,18 @@ class Obra():
         self.valor_estimado : float = 0
         self._aberto_para_gravação : bool = 0
         self._arquivo = open(r"")
+    
+    def lerCamposDoArquivo(self):
+        pass
+
+    def gravarCamposNoArquivo(self):
+        pass
+
+    def preencherCampos(self):
+        pass
+
+    def fecharArquivo(self):
+        pass
+
+    def __str__(self):
+        pass
