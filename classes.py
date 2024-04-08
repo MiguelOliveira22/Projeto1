@@ -1,5 +1,5 @@
 class Obra():
-    def __init__(self):
+    def __init__(self, nomeArq : str, paraEscrever : bool):
         self.ano_obra : str[4] = ""
         self.mes_obra : str[2] = ""
         self.autor_obra : str[20] = ""
