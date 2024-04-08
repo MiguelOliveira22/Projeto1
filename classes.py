@@ -24,3 +24,6 @@ class Obra():
 
     def __str__(self):
         pass
+
+    def compararCom(self):
+        pass
