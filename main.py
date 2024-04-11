@@ -15,6 +15,7 @@ def main():
             case 4:
                 func4()
         os.system("cls") or None
+    print("Muito Obrigado Pelo Uso!")
 
 def options():
     print("1. Cadastro de obras de arte")

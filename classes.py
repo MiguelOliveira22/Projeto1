@@ -7,23 +7,28 @@ class Obra():
         self.estilo_obra : str[15] = ""
         self.url_obra : str[100] = ""
         self.valor_estimado : float = 0
-        self._aberto_para_gravação : bool = 0
-        self._arquivo = 0
+        self._aberto_para_gravação : bool = paraEscrever
+        self._arquivo = nomeArq
     
     def lerCamposDoArquivo(self):
-        pass
+        if not self._aberto_para_gravação:
+            pass
 
     def gravarCamposNoArquivo(self):
-        pass
+        if self._aberto_para_gravação:
+            file = open(self._arquivo, "a")
+            file.write(self.__str__())
+            file.close()
 
-    def preencherCampos(self):
+    def preencherCampos(self, novoAno, novoMes, novoAutor, novoNome, novoEstilo, novoValor, novaURL : str):
         pass
 
     def fecharArquivo(self):
         pass
 
     def __str__(self):
-        pass
+        string = ""
+        return string
 
     def compararCom(self):
         pass
