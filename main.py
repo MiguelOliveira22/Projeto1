@@ -1,4 +1,5 @@
-import os, tkinter, classes
+import os, classes
+from tkinter import filedialog
 
 def main():
     selected = "Start"
@@ -25,6 +26,13 @@ def options():
     print("0. Terminar a execução do programa")
 
 def func1():
+    ask = filedialog.askopenfilename(title="James", initialdir="C:/Documents/", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    if ask == "":
+        print("Erro Na Abertura De Arquivo!")
+        return 1
+    call = classes.Obra(ask, 1)
+    call.preencherCampos()
+    call.gravarCamposNoArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func2():
