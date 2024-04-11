@@ -31,11 +31,18 @@ def func1():
         print("Erro Na Abertura De Arquivo!")
         return 1
     call = classes.Obra(ask, 1)
+    askb = 
     call.preencherCampos()
     call.gravarCamposNoArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func2():
+    ask = filedialog.askopenfilename(title="James", initialdir="C:/Documents/", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    if ask == "":
+        print("Erro Na Abertura De Arquivo!")
+        return 1
+    call = classes.Obra(ask, 0)
+    call.lerCamposDoArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func3():

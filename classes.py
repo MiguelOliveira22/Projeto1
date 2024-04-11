@@ -14,6 +14,7 @@ class Obra():
         if not self._aberto_para_gravação:
             file = open(repr(self._arquivo), "r")
             a = file.readline()
+            self.preencherCampos(a[0:3], a[3:5], a[5:25], a[25:45], a[45:60], a[60:160], a[160:170])
             file.close()
 
     def gravarCamposNoArquivo(self):
