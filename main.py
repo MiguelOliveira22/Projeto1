@@ -31,7 +31,7 @@ def func1():
         print("Erro Na Abertura De Arquivo!")
         return 1
     call = classes.Obra(ask, 1)
-    askb = 
+    askb = 0
     call.preencherCampos()
     call.gravarCamposNoArquivo()
     input("Pressione [ENTER] Para Continuar!")

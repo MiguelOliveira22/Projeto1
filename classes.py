@@ -12,9 +12,13 @@ class Obra():
     
     def lerCamposDoArquivo(self):
         if not self._aberto_para_gravação:
-            file = open(repr(self._arquivo), "r")
-            a = file.readline()
-            self.preencherCampos(a[0:3], a[3:5], a[5:25], a[25:45], a[45:60], a[60:160], a[160:170])
+            file = open(self._arquivo, "r")
+            print("Ano Mes Estilo Nome da Obra Autor Valor URL")
+            a = 0
+            while a != "":
+                a = file.readline()
+                self.preencherCampos(a[0:4], a[4:6], a[6:25], a[25:45], a[45:60], a[60:160], a[160:170])
+                print(self.__str__())
             file.close()
 
     def gravarCamposNoArquivo(self):
@@ -23,7 +27,7 @@ class Obra():
             file.write(self.__str__())
             file.close()
 
-    def preencherCampos(self, novoAno, novoMes, novoAutor, novoNome, novoEstilo, novoValor, novaURL : str):
+    def preencherCampos(self, novoAno, novoMes, novoEstilo, novoNome, novoAutor, novaURL : str,  novoValor):
         self.ano_obra = novoAno
         self.mes_obra = novoMes
         self.autor_obra = novoAutor
@@ -36,7 +40,7 @@ class Obra():
         pass
 
     def __str__(self):
-        string = ""
+        string = f"{self.ano_obra.rjust(4, " ")} {self.mes_obra.rjust(2, " ")} {self.estilo_obra.rjust(15, " ")} {self.nome_obra.rjust(20, " ")} {self.autor_obra.rjust(20, " ")} {self.url_obra.rjust(100, " ")}"
         return string
 
     def compararCom(self):
