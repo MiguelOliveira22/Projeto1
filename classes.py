@@ -8,22 +8,22 @@ class Obra():
         self.url_obra : str[100] = ""
         self.valor_estimado : float = 0
         self._aberto_para_gravação : bool = paraEscrever
-        self._arquivo : str = nomeArq
+        if self._aberto_para_gravação:
+            self._arquivo = open(nomeArq, "a")
+        else:
+            self._arquivo = open(nomeArq, "r")
     
     def lerCamposDoArquivo(self):
         if not self._aberto_para_gravação:
-            file = open(repr(self._arquivo), "r")
-            a = file.readline()
-            self.preencherCampos(a[0:3], a[3:5], a[5:25], a[25:45], a[45:60], a[60:160], a[160:170])
-            file.close()
+            file = self._arquivo.readline()
+            a = file.split()
+            self.preencherCampos()
 
     def gravarCamposNoArquivo(self):
         if self._aberto_para_gravação:
-            file = open(repr(self._arquivo), "a")
-            file.write(self.__str__())
-            file.close()
+            self._arquivo.write(self.__str__())
 
-    def preencherCampos(self, novoAno, novoMes, novoAutor, novoNome, novoEstilo, novoValor, novaURL : str):
+    def preencherCampos(self, novoAno, novoMes, novoEstilo, novoNome, novoAutor, novaURL : str, novoValor):
         self.ano_obra = novoAno
         self.mes_obra = novoMes
         self.autor_obra = novoAutor
@@ -33,10 +33,10 @@ class Obra():
         self.url_obra = novaURL
 
     def fecharArquivo(self):
-        pass
+        self._arquivo.close()
 
-    def __str__(self):
-        string = ""
+    def __str__(self) -> str:
+        string = "{self.ano_obra.rjust(4, " ")} {self.mes_obra.rjust(2, " ")} {self.estilo_obra.rjust(20, " ")} {self.nome_obra.rjust(20, " ")} {self.autor_obra.rjust(15, " ")} {str(self.valor_estimado).rjust(10, " ")} {self.url_obra.rjust(100, " ")}"
         return string
 
     def compararCom(self):
