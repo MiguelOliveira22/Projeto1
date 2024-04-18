@@ -16,7 +16,6 @@ class Obra():
     def lerCamposDoArquivo(self):
         if not self._aberto_para_gravação:
             file = self._arquivo.readline()
-            a = file.split()
             self.preencherCampos()
 
     def gravarCamposNoArquivo(self):
