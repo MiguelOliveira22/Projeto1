@@ -26,26 +26,38 @@ def options():
     print("0. Terminar a execução do programa")
 
 def func1():
-    ask = filedialog.askopenfilename(title="James", initialdir="C:/Documents/", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
-    if ask == "":
+    ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
         return 1
     call = classes.Obra(ask, 1)
-    askb = 
     call.preencherCampos()
     call.gravarCamposNoArquivo()
+    call.fecharArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func2():
-    ask = filedialog.askopenfilename(title="James", initialdir="C:/Documents/", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
-    if ask == "":
+    ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
         return 1
     call = classes.Obra(ask, 0)
-    call.lerCamposDoArquivo()
+    stringbuffer = "0"
+    while stringbuffer != "":
+        call.lerCamposDoArquivo()
+        stringbuffer = call.__str__()
+        print(stringbuffer)
+    call.fecharArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func3():
+    ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    if len(ask) == 0:
+        print("Erro Na Abertura De Arquivo!")
+        return 1
+    call = classes.Obra(ask, 0)
+    # Insira Aqui Codigo
+    call.fecharArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func4():
