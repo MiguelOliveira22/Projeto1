@@ -93,7 +93,7 @@ def func3():
     arquivo.close()
     call.fecharArquivo()
     if os.system("start chrome obras.html") or os.system("start msedge obras.html") or None == None:
-        print("Nenhum Navegador Foi Encontrado (Chrome / Microsoft Edge)")
+        print("Nenhum Navegador Ou Caminho Para O Navegador Foi Encontrado (Chrome / Microsoft Edge)")
     input("Pressione [ENTER] Para Continuar!")
 
 def func4():
