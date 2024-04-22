@@ -1,4 +1,4 @@
-import os, classes
+import os, classes, webbrowser
 from tkinter import filedialog
 
 def main():
@@ -98,9 +98,12 @@ def func3():
     arquivo.write("</html>\n")
     arquivo.close()
     call.fecharArquivo()
-    opener = os.system("start chrome ./obras.html") or None
-    if opener == None:
-        opener = os.system("start msedge ./obras.html") or None
+    # opener = os.system("start chrome ./obras.html") or None
+    # if opener == None:
+    #     opener = os.system("start msedge ./obras.html") or None
+    #     if opener == None:
+    #         print("Nenhum Navegador Ou Caminho Para O Navegador Foi Encontrado (Chrome / Microsoft Edge)")
+    opener = webbrowser.open("obras.html")
     if opener == None:
         print("Nenhum Navegador Ou Caminho Para O Navegador Foi Encontrado (Chrome / Microsoft Edge)")
     input("Pressione [ENTER] Para Continuar!")
