@@ -43,3 +43,58 @@ class Obra():
 
     def compararCom(self):
         pass
+
+
+
+
+class Matematica():
+    def __init__(self , numero):
+        self._numeroBase : int = numero #pensar em um nome melhor
+
+    def fatorial(self, x) -> int:
+        fatorial_calculado = 1
+        while x >= 2:
+            fatorial_calculado = x * fatorial_calculado
+            x = x - 1
+        return fatorial_calculado   
+        
+    def triangulo_de_Pascal(self):
+        n = 0
+        k = 0
+        coluna = 0
+        numero_linha = 0
+        linha_triangulo = ""
+        posicao_numero = 0
+        lista_string = ""
+        triangulo = ""
+        while n <= self._numeroBase:
+            while k <= n:
+                if k == 0 or k == n:
+                    lista_string += "1 "
+                    k += 1
+                else:
+                    diferença_entre_n_k = n - k
+                    fatorial_n = self.fatorial(n)
+                    fatorial_k = self.fatorial(k)
+                    fatorial_diferença = self.fatorial(diferença_entre_n_k)
+                    numero_calculado = fatorial_n // (fatorial_k * fatorial_diferença)
+                    lista_string += str(numero_calculado) + " "
+                    k += 1
+            n += 1
+            k = 0
+        lista_string = lista_string.split()
+        while posicao_numero < len(lista_string):
+            while numero_linha >= coluna:
+                linha_triangulo += lista_string[posicao_numero] + " "
+                coluna += 1
+                posicao_numero += 1
+            quantidade_de_numeros = linha_triangulo.split()
+            while len(quantidade_de_numeros) < 6:
+                linha_triangulo += "0 "
+                quantidade_de_numeros += "0"
+            triangulo += linha_triangulo
+            triangulo += ("\n")
+            numero_linha += 1
+            coluna = 0
+            linha_triangulo = ""
+        return triangulo
