@@ -81,14 +81,20 @@ def func3():
     arquivo.write("<html lang = ""pt-br"">\n")
     arquivo.write("<head>\n")
     arquivo.write("<title>James</title>\n")
+    arquivo.write("<link rel='stylesheet' href='obras.css'>\n")
     arquivo.write("</head>\n")
     arquivo.write("<body>\n")
     arquivo.write("<table>\n")
-    arquivo.write("<tr><th>Relatório De Obras Da Galeria Virtual</th></tr>\n")
-    info = "0"
+    arquivo.write("<tr><th colspan='6'>Relatório De Obras Da Galeria Virtual</th></tr>\n")
+    arquivo.write("<tr><th class='half'>Ano / Mês</th><th class='wide'>Nome Obras</th><th class='wide'>Estilo</th><th class='wide'>Autor</th><th>Valor Estimado</th><th>Imagem</th></tr>")
+    valortotal = 0
+    info = call.lerCamposDoArquivo()
     while info != 1:
+        valortotal += call.valor_estimado
+        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{(call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
         info = call.lerCamposDoArquivo()
-        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{call.nome_obra}</td><td>{call.estilo_obra}</td><td>{call.autor_obra}</td><td>{call.valor_estimado:.2f}</td><td><img src='{call.url_obra}' alt='{call.nome_obra} por {call.autor_obra}'></td></tr>\n")
+        if info == 1:
+            arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valortotal}</th></tr>")
     arquivo.write("</html>\n")
     arquivo.close()
     call.fecharArquivo()
