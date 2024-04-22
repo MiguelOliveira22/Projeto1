@@ -31,6 +31,7 @@ def func1():
         print("Erro Na Abertura De Arquivo!")
         input("Pressione [ENTER] Para Continuar!")
         return 1
+    print("Para Sair Da Tela De Cadastro, Insira O Valor 0 No Campo [Ano Da Obra]!")
     call = classes.Obra(ask, 1)
     ano = input("Ano da Obra: ")
     while ano != "0":
@@ -91,6 +92,8 @@ def func3():
     arquivo.write("</html>\n")
     arquivo.close()
     call.fecharArquivo()
+    if os.system("start chrome obras.html") or os.system("start msedge obras.html") or None == None:
+        print("Nenhum Navegador Foi Encontrado (Chrome / Microsoft Edge)")
     input("Pressione [ENTER] Para Continuar!")
 
 def func4():
