@@ -97,8 +97,8 @@ def func4():
     numero = int(input("Digite até qual linha o triângulo irá: "))
     call = classes.Matematica(numero)
     triangulo = call.triangulo_de_Pascal()
+    print()
     print(triangulo)
-
     input("Pressione [ENTER] Para Continuar!")
 
 if __name__ == "__main__":
