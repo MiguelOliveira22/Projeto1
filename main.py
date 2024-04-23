@@ -1,5 +1,5 @@
 import os, classes, webbrowser
-from tkinter import filedialog
+from tkinter import filedialog, Tk
 
 def main():
     selected = "Start"
@@ -26,6 +26,7 @@ def options():
     print("0. Terminar a execução do programa")
 
 def func1():
+    os.system("cls") or None
     ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
     if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
@@ -49,6 +50,7 @@ def func1():
     input("Pressione [ENTER] Para Continuar!")
 
 def func2():
+    os.system("cls") or None
     ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
     if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
@@ -70,6 +72,7 @@ def func2():
     input("Pressione [ENTER] Para Continuar!")
 
 def func3():
+    os.system("cls") or None
     ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
     if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
@@ -91,24 +94,22 @@ def func3():
     info = call.lerCamposDoArquivo()
     while info != 1:
         valortotal += call.valor_estimado
-        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{(call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
+        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
         info = call.lerCamposDoArquivo()
         if info == 1:
             arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valortotal}</th></tr>")
     arquivo.write("</html>\n")
     arquivo.close()
     call.fecharArquivo()
-    # opener = os.system("start chrome ./obras.html") or None
-    # if opener == None:
-    #     opener = os.system("start msedge ./obras.html") or None
-    #     if opener == None:
-    #         print("Nenhum Navegador Ou Caminho Para O Navegador Foi Encontrado (Chrome / Microsoft Edge)")
     opener = webbrowser.open("obras.html")
     if opener == None:
         print("Nenhum Navegador Ou Caminho Para O Navegador Foi Encontrado (Chrome / Microsoft Edge)")
+    else:
+        print("Pronto!")
     input("Pressione [ENTER] Para Continuar!")
 
 def func4():
+    os.system("cls") or None
     numero = int(input("Digite até qual linha o triângulo irá: "))
     call = classes.Matematica(numero)
     triangulo = call.triangulo_de_Pascal()
