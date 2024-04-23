@@ -102,15 +102,22 @@ def func3():
     arquivo.write(f"<tr><th class='half'>Ano / Mês</th><th class='wide'>Nome Obras</th><th class='wide'>Estilo</th><th class='wide'>Autor</th><th>Valor Estimado</th><th>Imagem</th></tr>")
 
     valortotal = 0
-    info = call.lerCamposDoArquivo()
-    while info != 1:
-        valortotal += call.valor_estimado
-        info = call.lerCamposDoArquivo()
-        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
-
+    info = call
+    while info.lerCamposDoArquivo() != 1:
+        valorparcial = 0
+        valortotal += info
+        info2 = compare
+        while info2.lerCamposDoArquivo() != 1:
+            string = info.valor_estimado
+            if call.compararCom(compare) == -1:
+                string = info2.valor_estimado
+            valorparcial += 
+            arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
+        arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valorparcial}</th></tr>")
         if info == 1:
             arquivo.write(f"<tr><th colspan='4'>Total Geral</th><th>{valortotal}</th></tr>")
     arquivo.write("</html>\n")
+
     arquivo.close()
     call.fecharArquivo()
     opener = webbrowser.open("obras.html")
