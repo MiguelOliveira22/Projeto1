@@ -18,7 +18,7 @@ class Obra():
             file = self._arquivo.readline()
             if file == "":
                 return 1
-            self.preencherCampos(file[0:4], file[6:8], file[10:25], file[27:47], file[49:69], file[71:81], file[83:183])
+            self.preencherCampos(file[0:4], file[6:8], file[10:25], file[27:47], file[49:69], file[71:86], file[88:188])
 
     def gravarCamposNoArquivo(self):
         if self._aberto_para_gravação:
@@ -38,15 +38,23 @@ class Obra():
 
     def __str__(self) -> str:
         valor = f"{self.valor_estimado:.2f}"
-        string = f"{self.ano_obra.rjust(4)}  {self.mes_obra.rjust(2)}  {self.estilo_obra.ljust(15)}  {self.nome_obra.ljust(20)}  {self.autor_obra.ljust(20)}  {valor.rjust(10)}  {self.url_obra.ljust(100)}"
+        string = f"{self.ano_obra.rjust(4)}  {self.mes_obra.rjust(2)}  {self.estilo_obra.ljust(15)}  {self.nome_obra.ljust(20)}  {self.autor_obra.ljust(20)}  {valor.rjust(15)}  {self.url_obra.ljust(100)}"
         return string
 
-    def compararCom(self):
-        pass # Terminar
+    def compararCom(self, outraObra):
+        valora = f"{self.ano_obra.rjust(4)}{self.mes_obra.rjust(2)}{self.autor_obra}{self.nome_obra}"
+        outraObra.lerCamposDoArquivo()
+        valorb = f"{outraObra.ano_obra.rjust(4)}{outraObra.mes_obra.rjust(2)}{outraObra.autor_obra}{outraObra.nome_obra}"
+        if valora == valorb:
+            return 0
+        if valora > valorb:
+            return 1
+        if valora < valorb:
+            return -1
 
 class Matematica():
     def __init__(self , numero):
-        self._numeroBase : int = numero #pensar em um nome melhor
+        self._numeroBase : int = numero
 
     def fatorial(self, x : int) -> int:
         fatorial_calculado = 1
@@ -58,9 +66,9 @@ class Matematica():
     def triangulo_de_Pascal(self):
         n = 0
         k = 0
-        linha_string = ""
         triangulo = ""
         while n < self._numeroBase:
+            linha_string = ""
             while k <= n:
                 if k == 0 or k == n:
                     linha_string += "1".ljust(6)
@@ -72,5 +80,4 @@ class Matematica():
             n += 1
             k = 0
             triangulo += linha_string + "\n"
-            linha_string = ""
         return triangulo

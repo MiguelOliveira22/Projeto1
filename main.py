@@ -1,6 +1,8 @@
 import os, classes, webbrowser
 from tkinter import filedialog, Tk
 
+tipos : tuple = [("Arquivo de Texto", "*.txt")]
+
 def main():
     selected = "Start"
     while selected != 0:
@@ -27,7 +29,9 @@ def options():
 
 def func1():
     os.system("cls") or None
-    ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    root = Tk()
+    ask = filedialog.askopenfilename(parent=root, title="Selecione Um Arquivo De Obras", initialdir=rf"{os.getcwd()}", multiple=False, filetypes=tipos)
+    root.destroy()
     if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
         input("Pressione [ENTER] Para Continuar!")
@@ -41,23 +45,25 @@ def func1():
         nome = input("Nome da Obra: ")
         estilo = input("Estilo da Obra: ")
         valor = float(input("Valor da Obra: "))
-        url = input("Arquivo de Imagem da Obra: ")
+        url = input("Arquivo de Imagem da Obra (Dentro Da Pasta ./imagem): ")
         call.preencherCampos(ano, mes, estilo, nome, autor, valor, url)
         call.gravarCamposNoArquivo()
-        print()
+        print("\nPara Sair Da Tela De Cadastro, Insira O Valor 0 No Campo [Ano Da Obra]!")
         ano = input("Ano da Obra: ")
     call.fecharArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
 def func2():
     os.system("cls") or None
-    ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    root = Tk()
+    ask = filedialog.askopenfilename(parent=root, title="Selecione Um Arquivo De Obras", initialdir=rf"{os.getcwd()}", multiple=False, filetypes=tipos)
+    root.destroy()
     if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
         input("Pressione [ENTER] Para Continuar!")
         return 1
     call = classes.Obra(ask, 0)
-    print("Ano  Mes  Estilo           Nome da Obra          Nome do Autor         Valor Est.  Arquivo de Imagem")
+    print("Ano  Mes  Estilo           Nome da Obra          Nome do Autor              Valor Est.  Arquivo de Imagem")
     i = 0
     valorobra = 0
     info = call.lerCamposDoArquivo()
@@ -65,20 +71,24 @@ def func2():
         i += 1
         valorobra += call.valor_estimado
         stringbuffer = call.__str__()
-        print(stringbuffer, end = "\n")
+        print(stringbuffer.rstrip(), end = "\n")
         info = call.lerCamposDoArquivo()
-    print(f"Itens Listados: {i}          Valor Total Das Obras: {valorobra:.2f}")
+    valorobra = f"{valorobra:.2f}".rjust(15)
+    print(f"\n                           Itens Listados: {i}                    Valor: {valorobra}")
     call.fecharArquivo()
-    input("Pressione [ENTER] Para Continuar!")
+    input("\nPressione [ENTER] Para Continuar!")
 
 def func3():
     os.system("cls") or None
-    ask = filedialog.askopenfilename(title="Selecione Um Arquivo De Obras", multiple=False, filetypes=[("Arquivo de Texto", "*.txt")])
+    root = Tk()
+    ask = filedialog.askopenfilename(parent=root, title="Selecione Um Arquivo De Obras", initialdir=rf"{os.getcwd()}", multiple=False, filetypes=tipos)
+    root.destroy()
     if len(ask) == 0:
         print("Erro Na Abertura De Arquivo!")
         input("Pressione [ENTER] Para Continuar!")
         return 1
     call = classes.Obra(ask, 0)
+    compare = classes.Obra(ask, 0)
     arquivo = open("obras.html", "w")
     arquivo.write("<!DOCTYPE html>\n")
     arquivo.write("<html lang = ""pt-br"">\n")
@@ -88,16 +98,18 @@ def func3():
     arquivo.write("</head>\n")
     arquivo.write("<body>\n")
     arquivo.write("<table>\n")
-    arquivo.write("<tr><th colspan='6'>Relatório De Obras Da Galeria Virtual</th></tr>\n")
-    arquivo.write("<tr><th class='half'>Ano / Mês</th><th class='wide'>Nome Obras</th><th class='wide'>Estilo</th><th class='wide'>Autor</th><th>Valor Estimado</th><th>Imagem</th></tr>")
+    arquivo.write(f"<tr><th colspan='6'>Relatório De Obras Da Galeria Virtual</th></tr>\n")
+    arquivo.write(f"<tr><th class='half'>Ano / Mês</th><th class='wide'>Nome Obras</th><th class='wide'>Estilo</th><th class='wide'>Autor</th><th>Valor Estimado</th><th>Imagem</th></tr>")
+
     valortotal = 0
     info = call.lerCamposDoArquivo()
     while info != 1:
         valortotal += call.valor_estimado
-        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
         info = call.lerCamposDoArquivo()
+        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
+
         if info == 1:
-            arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valortotal}</th></tr>")
+            arquivo.write(f"<tr><th colspan='4'>Total Geral</th><th>{valortotal}</th></tr>")
     arquivo.write("</html>\n")
     arquivo.close()
     call.fecharArquivo()
@@ -113,8 +125,7 @@ def func4():
     numero = int(input("Digite até qual linha o triângulo irá: "))
     call = classes.Matematica(numero)
     triangulo = call.triangulo_de_Pascal()
-    print()
-    print(triangulo)
+    print("\n" + triangulo)
     input("Pressione [ENTER] Para Continuar!")
 
 if __name__ == "__main__":
