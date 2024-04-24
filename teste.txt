@@ -9,3 +9,7 @@
 2004   4  Nada             Matos E Campos        Miguel Oliveira                  5.00  /imagem/queijo.jpg                                                                                  
 4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
 4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
+4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
+4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
+4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
+4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
