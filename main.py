@@ -50,9 +50,9 @@ def func1():
         call.gravarCamposNoArquivo()
         print("\nPara Sair Da Tela De Cadastro, Insira O Valor 0 No Campo [Ano Da Obra]!")
         ano = input("Ano da Obra: ")
-    os.system(f"sort /o {ask}") or None
-    # os.system(f"sort -n {ask} -o {ask}") or None
     call.fecharArquivo()
+    os.system(f"sort {ask} /o {ask}") or None
+    # os.system(f"sort -n {ask} -o {ask}") or None
     input("Pressione [ENTER] Para Continuar!")
 
 def func2():
@@ -90,6 +90,7 @@ def func3():
         input("Pressione [ENTER] Para Continuar!")
         return 1
     call = classes.Obra(ask, 0)
+    call.lerCamposDoArquivo()
     compare = classes.Obra(ask, 0)
     arquivo = open("obras.html", "w")
     arquivo.write("<!DOCTYPE html>\n")
@@ -105,25 +106,19 @@ def func3():
 
     valortotal = 0
     valorparcial = 0
-    hasAdded = 0
-    call.lerCamposDoArquivo()
     while compare.lerCamposDoArquivo() != 1:
         if call.ano_obra == compare.ano_obra:
             valorparcial += compare.valor_estimado
+            valortotal += compare.valor_estimado
             arquivo.write(f"<tr><td>{compare.ano_obra} / {compare.mes_obra}</td><td>{(compare.nome_obra).strip()}</td><td>{(compare.estilo_obra).strip()}</td><td>{(compare.autor_obra).strip()}</td><td>{compare.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (compare.url_obra).strip()}' alt='{(compare.nome_obra).strip()} por {(compare.autor_obra).strip()}'></td></tr>\n")
-            hasAdded = 1
         else:
             while call.ano_obra != compare.ano_obra:
-                valortotal += call.valor_estimado
                 call.lerCamposDoArquivo()
-            if not hasAdded:
-                valorparcial += call.valor_estimado
             arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valorparcial:.2f}</th></tr>")
             valorparcial = 0
-            hasAdded = 0
+            valortotal += compare.valor_estimado
+            valorparcial += compare.valor_estimado
             arquivo.write(f"<tr><td>{compare.ano_obra} / {compare.mes_obra}</td><td>{(compare.nome_obra).strip()}</td><td>{(compare.estilo_obra).strip()}</td><td>{(compare.autor_obra).strip()}</td><td>{compare.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (compare.url_obra).strip()}' alt='{(compare.nome_obra).strip()} por {(compare.autor_obra).strip()}'></td></tr>\n")
-    valortotal += call.valor_estimado
-    valorparcial += call.valor_estimado
     arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valorparcial:.2f}</th></tr>")
     arquivo.write(f"<tr><th colspan='4'>Total Geral</th><th>{valortotal:.2f}</th></tr>")
     arquivo.write("</html>\n")
