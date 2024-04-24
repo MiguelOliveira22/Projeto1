@@ -1,7 +1,11 @@
-2004   4  Nada             Matos E Campos        Miguel Oliveira            1112345.00  /imagem/arquivo                                                                                     
- 123   3  Meu estilo       Meu fim               Eu mesmo                     12345.00  /meuaqrquivo                                                                                        
-  23   1  Lares            Machiil               Bacchee                      12345.00  aaaaa                                                                                               
-1234   6  Buccaelono       Matutinho             AntonioPlays                 12345.00  /imagem/i.jpg                                                                                       
-1234   6  Moderno          Adiodas               Kaike                         1230.00  /imagem/kaike.jpg                                                                                   
-1234  12  Meicon           Miacon                Maicon                       12345.00  Pato                                                                                                                                                                                        
-1234  12  Feio             qaijo                 Maicao Das Massa             12345.00  /imagens/queijo                                                                                     
+  23   1  Lares            Machiil               Bacchee                          5.00  /imagem/kaike.jpg                                                                                   
+ 123   3  Meu estilo       Meu fim               Eu mesmo                         5.00  /imagem/kaike.jpg                                                                                   
+1234  12  Feio             qaijo                 Maicao Das Massa                 5.00  /imagem/queijo.jpg                                                                                  
+1234  12  Meicon           Miacon                Maicon                           5.00  /imagem/queijo.jpg                                                                                                                                                                          
+1234   4  Moderno          Martin Laterite       Amoretes                         5.00  /imagem/kaike.jpg                                                                                   
+1234   4  PosModernismo    Mine Love             Patronium                        5.00  /imagem/kaike.jpg                                                                                   
+1234   6  Buccaelono       Matutinho             AntonioPlays                     5.00  /imagem/queijo.jpg                                                                                  
+1234   6  Moderno          Adiodas               Kaike                            5.00  /imagem/kaike.jpg                                                                                   
+2004   4  Nada             Matos E Campos        Miguel Oliveira                  5.00  /imagem/queijo.jpg                                                                                  
+4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   
+4231   7  Paterino         Cano Bonito           Amanco                           5.00  /imagem/kaike.jpg                                                                                   

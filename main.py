@@ -45,11 +45,13 @@ def func1():
         nome = input("Nome da Obra: ")
         estilo = input("Estilo da Obra: ")
         valor = float(input("Valor da Obra: "))
-        url = input("Arquivo de Imagem da Obra (Dentro Da Pasta ./imagem): ")
+        url = input("Arquivo de Imagem da Obra: ")
         call.preencherCampos(ano, mes, estilo, nome, autor, valor, url)
         call.gravarCamposNoArquivo()
         print("\nPara Sair Da Tela De Cadastro, Insira O Valor 0 No Campo [Ano Da Obra]!")
         ano = input("Ano da Obra: ")
+    os.system(f"sort /o {ask}") or None
+    # os.system(f"sort -n {ask} -o {ask}") or None
     call.fecharArquivo()
     input("Pressione [ENTER] Para Continuar!")
 
@@ -74,7 +76,7 @@ def func2():
         print(stringbuffer.rstrip(), end = "\n")
         info = call.lerCamposDoArquivo()
     valorobra = f"{valorobra:.2f}".rjust(15)
-    print(f"\n                           Itens Listados: {i}                    Valor: {valorobra}")
+    print(f"\n                           Itens Listados: {i}                   Valor: {valorobra}")
     call.fecharArquivo()
     input("\nPressione [ENTER] Para Continuar!")
 
@@ -102,17 +104,27 @@ def func3():
     arquivo.write(f"<tr><th class='half'>Ano / Mês</th><th class='wide'>Nome Obras</th><th class='wide'>Estilo</th><th class='wide'>Autor</th><th>Valor Estimado</th><th>Imagem</th></tr>")
 
     valortotal = 0
-    while call.lerCamposDoArquivo() != 1:
-        valorparcial = 0
-        valortotal += call.valor_estimado
-        info2 = compare
-        while info2.lerCamposDoArquivo() != 1:
-            string = info2.valor_estimado
-            if call.compararCom(compare) == -1:
-                string = info2.valor_estimado
-        valorparcial += string
-        arquivo.write(f"<tr><td>{call.ano_obra} / {call.mes_obra}</td><td>{(call.nome_obra).strip()}</td><td>{(call.estilo_obra).strip()}</td><td>{(call.autor_obra).strip()}</td><td>{call.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (call.url_obra).strip()}' alt='{(call.nome_obra).strip()} por {(call.autor_obra).strip()}'></td></tr>\n")
-        arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valorparcial:.2f}</th></tr>")
+    valorparcial = 0
+    hasAdded = 0
+    call.lerCamposDoArquivo()
+    while compare.lerCamposDoArquivo() != 1:
+        if call.ano_obra == compare.ano_obra:
+            valorparcial += compare.valor_estimado
+            arquivo.write(f"<tr><td>{compare.ano_obra} / {compare.mes_obra}</td><td>{(compare.nome_obra).strip()}</td><td>{(compare.estilo_obra).strip()}</td><td>{(compare.autor_obra).strip()}</td><td>{compare.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (compare.url_obra).strip()}' alt='{(compare.nome_obra).strip()} por {(compare.autor_obra).strip()}'></td></tr>\n")
+            hasAdded = 1
+        else:
+            while call.ano_obra != compare.ano_obra:
+                valortotal += call.valor_estimado
+                call.lerCamposDoArquivo()
+            if not hasAdded:
+                valorparcial += call.valor_estimado
+            arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valorparcial:.2f}</th></tr>")
+            valorparcial = 0
+            hasAdded = 0
+            arquivo.write(f"<tr><td>{compare.ano_obra} / {compare.mes_obra}</td><td>{(compare.nome_obra).strip()}</td><td>{(compare.estilo_obra).strip()}</td><td>{(compare.autor_obra).strip()}</td><td>{compare.valor_estimado:.2f}</td><td><img src='{os.getcwd() + (compare.url_obra).strip()}' alt='{(compare.nome_obra).strip()} por {(compare.autor_obra).strip()}'></td></tr>\n")
+    valortotal += call.valor_estimado
+    valorparcial += call.valor_estimado
+    arquivo.write(f"<tr><th colspan='4'>Total</th><th>{valorparcial:.2f}</th></tr>")
     arquivo.write(f"<tr><th colspan='4'>Total Geral</th><th>{valortotal:.2f}</th></tr>")
     arquivo.write("</html>\n")
 
