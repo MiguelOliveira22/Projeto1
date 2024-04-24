@@ -1,3 +1,6 @@
+#RA: 24143 24582
+#Nomes: Miguel Oliveira e Henrique Inoue
+
 class Obra():
     def __init__(self, nomeArq : str, paraEscrever : bool):
         self.ano_obra : str[4] = ""

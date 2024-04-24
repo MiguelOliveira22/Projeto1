@@ -1,3 +1,6 @@
+#RA: 24143 24582
+#Nomes: Miguel Oliveira e Henrique Inoue
+
 import os, classes, webbrowser
 from tkinter import filedialog, Tk
 
@@ -78,7 +81,7 @@ def func2():
         print(stringbuffer.rstrip(), end = "\n")
         info = call.lerCamposDoArquivo()
     valorobra = f"{valorobra:.2f}".rjust(15)
-    print(f"\n                           Itens Listados: {i}                   Valor: {valorobra}")
+    print(f"\n                           Itens Listados: {i}                    Valor: {valorobra}")
     call.fecharArquivo()
     input("\nPressione [ENTER] Para Continuar!")
 
