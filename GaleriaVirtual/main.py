@@ -5,6 +5,7 @@ tipos : tuple = [("Arquivo de Texto", "*.txt")]
 
 def main():
     selected = "Start"
+    os.system("cls") or None
     while selected != 0:
         options()
         selected = int(input("Selecione um: "))
@@ -38,7 +39,7 @@ def func1():
         return 1
     print("Para Sair Da Tela De Cadastro, Insira O Valor 0 No Campo [Ano Da Obra]!")
     call = classes.Obra(ask, 1)
-    ano = input("Ano da Obra: ")
+    ano = input("\nAno da Obra: ")
     while ano != "0":
         mes = input("Mês da Obra: ")
         autor = input("Autor da Obra: ")
@@ -48,6 +49,7 @@ def func1():
         url = input("Arquivo de Imagem da Obra: ")
         call.preencherCampos(ano, mes, estilo, nome, autor, valor, url)
         call.gravarCamposNoArquivo()
+        os.system("cls") or None
         print("\nPara Sair Da Tela De Cadastro, Insira O Valor 0 No Campo [Ano Da Obra]!")
         ano = input("Ano da Obra: ")
     call.fecharArquivo()
