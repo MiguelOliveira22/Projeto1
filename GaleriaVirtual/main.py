@@ -92,12 +92,12 @@ def func3():
     call = classes.Obra(ask, 0)
     call.lerCamposDoArquivo()
     compare = classes.Obra(ask, 0)
-    arquivo = open("obras.html", "w")
+    arquivo = open(f"{os.getcwd()}/obras.html", "w")
     arquivo.write("<!DOCTYPE html>\n")
     arquivo.write("<html lang = ""pt-br"">\n")
     arquivo.write("<head>\n")
     arquivo.write("<title>James</title>\n")
-    arquivo.write("<link rel='stylesheet' href='obras.css'>\n")
+    arquivo.write(f"<link rel='stylesheet' href='./obras.css'>\n")
     arquivo.write("</head>\n")
     arquivo.write("<body>\n")
     arquivo.write("<table>\n")
@@ -125,7 +125,7 @@ def func3():
 
     arquivo.close()
     call.fecharArquivo()
-    opener = webbrowser.open("obras.html")
+    opener = webbrowser.open(f"{os.getcwd()}/obras.html")
     if opener == None:
         print("Nenhum Navegador Ou Caminho Para O Navegador Foi Encontrado (Chrome / Microsoft Edge)")
     else:
