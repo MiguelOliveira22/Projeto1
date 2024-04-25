@@ -1,4 +1,3 @@
-1867   9  Classico         Retrato Das Catarata  Jean Valjean                 65045.00  /Imagens/Niagara.jpg                                                                                 
 1877   8  Semi-Realista    Auto Retrato          Van Gogh                   1900450.00  /Imagens/AutoRetrato.jpg                                                                            
 1989  12  Abstrato         Capoeiristas          Jerci Maccari                32460.00  /Imagens/Capoeira.jpg                                                                               
 2016   6  Moderno          Conversa Fiada 0      Jerci Maccari                92500.00  /Imagens/ConversaFiadaI.jpg                                                                         
